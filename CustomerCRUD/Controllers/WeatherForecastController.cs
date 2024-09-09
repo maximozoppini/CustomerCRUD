@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using SimpleCRUD.API;
 
-namespace CustomerCRUD.Controllers
+namespace SimpleCRUD.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

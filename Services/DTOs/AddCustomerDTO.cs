@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCRUD.Entities
+namespace SimpleCRUD.Services.DTOs
 {
-    public class Customer : BaseEntity
+    public class AddCustomerDTO
     {
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

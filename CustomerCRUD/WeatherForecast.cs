@@ -1,4 +1,4 @@
-namespace CustomerCRUD
+namespace SimpleCRUD.API
 {
     public class WeatherForecast
     {
