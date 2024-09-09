@@ -1,13 +1,15 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SimpleCRUD.Entities.DBContext;
-using MediatR;
 using SimpleCRUD.Services.Commons.Mapper;
 using SimpleCRUD.Services.Customers.Commands;
 using SimpleCRUD.Repositories.Interfaces;
 using SimpleCRUD.Repositories;
+
+using SimpleCRUD.Services.Customers.Querys;
+using GraphQL.Types;
+using GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,17 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerValidation>()
 // Add MediatR for CQRS
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(CreateCustomerHandler).Assembly));
 
+// Configure GraphQL
+builder.Services.AddGraphQL(b => b
+    .AddAutoSchema<CustomerQuery>()  // schema
+    .AddSystemTextJson());   // serializer
+
+// Register your GraphQL types and schema
+builder.Services.AddScoped<CustomerType>();
+builder.Services.AddScoped<CustomerQuery>();
+builder.Services.AddScoped<ISchema, GraphQLSchema>();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -50,6 +63,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Configure GraphQL endpoints
+app.UseGraphQL<ISchema>("/graphql");
+app.UseGraphQLPlayground("/playground");
 
 await using var scope = app.Services.CreateAsyncScope();
 await using var db = scope.ServiceProvider.GetService<CustomerAssestmentContext>();

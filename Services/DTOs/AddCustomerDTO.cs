@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRUD.Services.DTOs
 {
-    public class AddCustomerDTO
+    public class CustomerDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }

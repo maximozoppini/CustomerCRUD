@@ -9,7 +9,7 @@ namespace SimpleCRUD.Services.Commons.Mapper
     {
         public MapperConfig()
         {
-            CreateMap<Customer, AddCustomerDTO>().ReverseMap();
+            CreateMap<Customer, CustomerDTO>().ReverseMap();
             //CreateMap<Customer, CustomerDto>().ReverseMap();
             CreateMap<Customer, CreateCustomerCommand>().ReverseMap();
             //CreateMap<Customer, UpdateCustomerCommand>().ReverseMap();
