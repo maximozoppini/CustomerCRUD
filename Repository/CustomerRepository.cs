@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRUD.Repositories
 {
-    public class CustomerRepository : Repository<Customer, int>, ICustomerRepository
+    public class CustomerRepository : BaseRepository<Customer, int>, ICustomerRepository
     {
         public CustomerRepository(CustomerAssestmentContext context)
             : base(context) { }

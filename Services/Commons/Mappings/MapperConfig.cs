@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SimpleCRUD.Entities;
-using SimpleCRUD.Services.Customers.Commands;
+using SimpleCRUD.Services.Customers.Commands.Create;
 using SimpleCRUD.Services.DTOs;
 
 namespace SimpleCRUD.Services.Commons.Mapper
@@ -10,8 +10,7 @@ namespace SimpleCRUD.Services.Commons.Mapper
         public MapperConfig()
         {
             CreateMap<Customer, CustomerDTO>().ReverseMap();
-            //CreateMap<Customer, CustomerDto>().ReverseMap();
-            CreateMap<Customer, CreateCustomerCommand>().ReverseMap();
+            CreateMap<Customer, UpdateCustomerCommand>().ReverseMap();
             //CreateMap<Customer, UpdateCustomerCommand>().ReverseMap();
         }
     }

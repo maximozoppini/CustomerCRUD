@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using SimpleCRUD.Services.Customers.Commands.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRUD.Services.Customers.Commands
 {
-    public class CreateCustomerValidation : AbstractValidator<CreateCustomerCommand>
+    public class CreateCustomerValidation : AbstractValidator<UpdateCustomerCommand>
     {
         public CreateCustomerValidation()
         {

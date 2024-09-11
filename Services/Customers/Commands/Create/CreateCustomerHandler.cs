@@ -6,6 +6,7 @@ using SimpleCRUD.Entities;
 using SimpleCRUD.Entities.DBContext;
 using SimpleCRUD.Repositories.Interfaces;
 using SimpleCRUD.Services.Commons.Bases;
+using SimpleCRUD.Services.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCRUD.Services.Customers.Commands
+namespace SimpleCRUD.Services.Customers.Commands.Create
 {
-    public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, BaseResponse<Customer>>
+    public class CreateCustomerHandler : IRequestHandler<UpdateCustomerCommand, BaseResponse<CustomerDTO>>
     {
         private readonly IMapper _mapper;
         private readonly ICustomerRepository _customerRepo;
@@ -26,22 +27,19 @@ namespace SimpleCRUD.Services.Customers.Commands
             _customerRepo = customerRepository;
         }
 
-        public async Task<BaseResponse<Customer>> Handle(CreateCustomerCommand command, CancellationToken cancellationToken)
+        public async Task<BaseResponse<CustomerDTO>> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
         {
-            var response = new BaseResponse<Customer>();
+            var response = new BaseResponse<CustomerDTO>();
             try
             {
                 var customer = _mapper.Map<Customer>(command);
                 customer.Created = DateTime.UtcNow;
                 customer.Modify = DateTime.UtcNow;
 
-                response.Data = await _customerRepo.Add(customer);
+                response.Data = _mapper.Map<CustomerDTO>(await _customerRepo.AddAsync(customer));
                 response.succcess = true;
-                //if (response.Data)
-                //{
-                //    response.succcess = true;
-                //    response.Message = "Create succeed!";
-                //}
+                response.Message = "Create succeed!";
+
             }
             catch (Exception ex)
             {

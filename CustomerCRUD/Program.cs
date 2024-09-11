@@ -3,13 +3,13 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using SimpleCRUD.Entities.DBContext;
 using SimpleCRUD.Services.Commons.Mapper;
-using SimpleCRUD.Services.Customers.Commands;
 using SimpleCRUD.Repositories.Interfaces;
 using SimpleCRUD.Repositories;
 
 using SimpleCRUD.Services.Customers.Querys;
 using GraphQL.Types;
 using GraphQL;
+using SimpleCRUD.Services.Customers.Commands.Create;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,10 +29,10 @@ builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
 // Register FluentValidation validators
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddValidatorsFromAssemblyContaining<CreateCustomerValidation>();
+builder.Services.AddValidatorsFromAssemblyContaining<DeleteCustomerValidation>();
 
 // Add MediatR for CQRS
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(CreateCustomerHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(UpdateCustomerHandler).Assembly));
 
 // Configure GraphQL
 builder.Services.AddGraphQL(b => b
