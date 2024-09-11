@@ -36,10 +36,6 @@ export class CustomerListComponent {
     }
   ];
 
-  gridApi: any;
-  gridColumnApi: any;
-  rowData: Customer[] = [];
-
   constructor(private store: Store<{ customerState: CustomerState }>
     , private snackBar: MatSnackBar
     , private dialog: MatDialog) {

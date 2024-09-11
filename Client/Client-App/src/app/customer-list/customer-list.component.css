@@ -1,6 +1,6 @@
 :host {
   display: block;
-  width: 100%;  /* Ensure full width */
+  width: 100%;
 }
 .createButton {
   margin: 15px !important;

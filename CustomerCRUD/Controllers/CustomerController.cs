@@ -20,7 +20,6 @@ namespace SimpleCRUD.API.Controllers
         }
 
 
-        // GET: api/customers
         [HttpGet]
         public async Task<ActionResult<List<CustomerDTO>>> GetAllCustomers()
         {
@@ -43,7 +42,6 @@ namespace SimpleCRUD.API.Controllers
             return BadRequest(response);
         }
 
-        // PUT: api/customers/{id}
         [HttpPut("{id}")]
         public async Task<ActionResult<CustomerDTO>> UpdateCustomer(int id, [FromBody] UpdateCustomerCommand command)
         {
@@ -58,7 +56,6 @@ namespace SimpleCRUD.API.Controllers
             return Ok(result.Data);
         }
 
-        // DELETE: api/customers/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult<int>> DeleteCustomer(int id)
         {

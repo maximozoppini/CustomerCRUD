@@ -14,6 +14,7 @@ export class CustomerEffects {
     private customerService: CustomerService
   ) {}
 
+  // Load all customers
   loadCustomers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadCustomers),
@@ -26,6 +27,7 @@ export class CustomerEffects {
     )
   );
 
+  // Create a customer
   createCustomer$ = createEffect(() =>
     this.actions$.pipe(
       ofType(createCustomer),

@@ -27,18 +27,6 @@ export class CustomerFormComponent {
     });
   }
 
-  // onSubmit() {
-  //   if (this.customerForm.valid) {
-  //     const newCustomer: Customer = this.customerForm.value;
-
-  //     this.store.dispatch(createCustomer({ customer: newCustomer }));
-  //     this.snackBar.open('Customer created successfully', 'Close', {
-  //       duration: 3000,
-  //     });
-  //     this.dialogRef.close();
-  //   }
-  // }
-
   onCreate() {
     if (this.customerForm.valid) {
       const newCustomer: Customer = this.customerForm.value;

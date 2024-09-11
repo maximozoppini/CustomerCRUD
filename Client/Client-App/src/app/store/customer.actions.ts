@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Customer } from './customer.model';
 
+// Load Customer Actions
 export const loadCustomers = createAction('[Customer List] Load Customers');
 export const loadCustomersSuccess = createAction(
   '[Customer List] Load Customers Success',
@@ -11,6 +12,7 @@ export const loadCustomersFailure = createAction(
   props<{ error: string }>()
 );
 
+// Create Customer actions
 export const createCustomer = createAction(
   '[Create Customer] Create Customer',
   props<{ customer: Customer }>()
