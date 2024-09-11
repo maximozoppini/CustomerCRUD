@@ -1,0 +1,7 @@
+:host {
+  display: block;
+  width: 100%;  /* Ensure full width */
+}
+.createButton {
+  margin: 15px !important;
+}

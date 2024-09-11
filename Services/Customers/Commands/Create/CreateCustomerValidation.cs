@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRUD.Services.Customers.Commands
 {
-    public class CreateCustomerValidation : AbstractValidator<UpdateCustomerCommand>
+    public class CreateCustomerValidation : AbstractValidator<CreateCustomerCommand>
     {
         public CreateCustomerValidation()
         {

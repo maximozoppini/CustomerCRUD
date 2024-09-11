@@ -18,6 +18,8 @@ builder.Services.AddDbContext<CustomerAssestmentContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("localDb"));
 });
 
+
+
 // Add AutoMapper
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
@@ -49,7 +51,24 @@ builder.Services.AddScoped<ISchema, GraphQLSchema>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200") // URL of the Angular app
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();  // If using authentication
+        });
+});
+
 var app = builder.Build();
+
+// Enable CORS middleware
+app.UseCors("AllowAngularApp");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

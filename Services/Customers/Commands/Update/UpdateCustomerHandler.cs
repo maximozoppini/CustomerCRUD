@@ -38,8 +38,10 @@ namespace SimpleCRUD.Services.Customers.Commands.Create
                     throw new Exception("Customer not found");
                 }
 
-                var updatedCustomer = _mapper.Map<Customer>(command);
-                updatedCustomer.Modify = DateTime.UtcNow;
+                customer.FirstName = command.FirstName;
+                customer.LastName = command.LastName;
+                customer.Email = command.Email;
+                customer.Modify = DateTime.UtcNow;
 
                 response.Data = _mapper.Map<CustomerDTO>(await _customerRepo.UpdateAsync(customer));
                 response.succcess = true;

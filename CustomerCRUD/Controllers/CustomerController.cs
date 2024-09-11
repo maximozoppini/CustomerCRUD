@@ -37,7 +37,7 @@ namespace SimpleCRUD.API.Controllers
 
             if (response.succcess)
             {
-                return Ok(response);
+                return Ok(response.Data);
             }
 
             return BadRequest(response);
@@ -45,7 +45,7 @@ namespace SimpleCRUD.API.Controllers
 
         // PUT: api/customers/{id}
         [HttpPut("{id}")]
-        public async Task<ActionResult<int>> UpdateCustomer(int id, [FromBody] UpdateCustomerCommand command)
+        public async Task<ActionResult<CustomerDTO>> UpdateCustomer(int id, [FromBody] UpdateCustomerCommand command)
         {
             if (command is null) return BadRequest();
 
@@ -55,7 +55,7 @@ namespace SimpleCRUD.API.Controllers
             }
 
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         // DELETE: api/customers/{id}

@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace SimpleCRUD.Services.Customers.Commands.Create
 {
-    public class CreateCustomerHandler : IRequestHandler<UpdateCustomerCommand, BaseResponse<CustomerDTO>>
+    public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, BaseResponse<CustomerDTO>>
     {
         private readonly IMapper _mapper;
         private readonly ICustomerRepository _customerRepo;
@@ -27,7 +27,7 @@ namespace SimpleCRUD.Services.Customers.Commands.Create
             _customerRepo = customerRepository;
         }
 
-        public async Task<BaseResponse<CustomerDTO>> Handle(UpdateCustomerCommand command, CancellationToken cancellationToken)
+        public async Task<BaseResponse<CustomerDTO>> Handle(CreateCustomerCommand command, CancellationToken cancellationToken)
         {
             var response = new BaseResponse<CustomerDTO>();
             try

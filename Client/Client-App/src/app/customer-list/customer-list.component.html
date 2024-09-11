@@ -1,0 +1,15 @@
+
+      <button mat-flat-button color="primary" class="createButton"
+      (click)="openCreateCustomerDialog()">Add Customer</button>
+
+      <ag-grid-angular
+      [rowData]="customers$ | async"
+      [columnDefs]="columnDefs"
+      style="width: 50%; height: 400px;"
+      class="ag-theme-alpine"
+      [domLayout]="'autoHeight'"
+      (cellValueChanged)="onCellValueChanged($event)"
+      >
+    </ag-grid-angular>
+
+
